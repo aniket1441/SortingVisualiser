@@ -1,6 +1,7 @@
 import React, { useEffect, useState , useRef } from 'react'
 import "./SortVisualiser.css";
 import { getQuickSortAnimations } from "../algos/QuickSort";
+import {GetBubblsort  } from "../algos/Bubblsort";
 
 const ArrayLength =100;
 const MIN_NUM = 5;
@@ -20,16 +21,16 @@ function SortVisualiser(props) {
     useEffect(initialiseArray ,[]);
 
    function initialiseArray()
-   {    
+   {  
       if(isSorting)
-        return ;
-      
-     if(isSorted)
-       resetArrayColour();
+        return;
+     
+      if(isSorted)
+        resetArrayColour();  
+
 
      setIsSorted(false);  
 
-      setIsSorted(false);
       const arr=[];
 
       for(let i=0;i<ArrayLength ; i++){
@@ -49,9 +50,25 @@ function SortVisualiser(props) {
    }
 
    function quicksort(){
+ 
+    if(isSorted)
+     return ;
+         
       const animation = getQuickSortAnimations(arr);
       animateArray(animation);
    }
+
+
+   function bubblesort(){
+ 
+    if(isSorted)
+     return ;
+
+     
+      const animation = GetBubblsort(arr);
+      animateArray(animation);
+   }
+
 
    function animateArray(animation)
    {
@@ -85,13 +102,13 @@ function SortVisualiser(props) {
                         return newArr;
                    });   
                } 
-            } , index *DELAY )      
+            } , index * DELAY )      
       } );
 
      
       setTimeout(()=>{
           animateSortedArray();
-      } , animateArray.length * DELAY);
+      } , animation.length * DELAY);
        
    }
 
@@ -111,6 +128,9 @@ function SortVisualiser(props) {
    }
  
    function animateSortedArray(){
+     
+     
+
        const arrayBars = containerRef.current.children;
         
        for(let i=0;i<arrayBars.length ;i++)
@@ -119,7 +139,7 @@ function SortVisualiser(props) {
 
           setTimeout(() => {
               arrayBarStyle.backgroundColor = SORTED_COLOUR
-          },arrayBars.length*DELAY*10 ); 
+          },arrayBars.length*DELAY ); 
        }
 
        setTimeout(()=>{
@@ -154,7 +174,7 @@ function SortVisualiser(props) {
                            width : `${100/ArrayLength}vw`,  
                        }}
                        ket = {index} 
-                       > {barHeight}</div>  
+                       > </div>  
                   ) )
               }  
            </div>  
@@ -167,7 +187,11 @@ function SortVisualiser(props) {
                   </button>
                   <button className="app-button" onClick={quicksort}>
                           Quick sort 
-                  </button>  
+                  </button> 
+                  <button className="app-button" onClick={bubblesort}>
+                          Bubble sort 
+                  </button> 
+
                </li>
                </ul> 
            </div> 
