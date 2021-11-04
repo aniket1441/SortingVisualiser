@@ -1,0 +1,28 @@
+
+* {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+  }
+  
+.visualiser-container{
+   display: flex;
+   flex-direction: column;
+   min-height: 200vh;
+   
+}
+
+.array-bar{
+    background-color: blue;
+    border-radius: 0.5em;
+    margin: 0.15%;
+}
+
+.array-container{
+  align-items:center;
+  display: flex;  
+  width:fit-content;
+}
+
+.app-button{
+    background-color: aquamarine;
+}
